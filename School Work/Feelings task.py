@@ -13,19 +13,25 @@ def list_feelings():
 
 
 def check_feelings():
-    # Asks the user how they are feeling.
-    feelings = input("")
-    # Checks their feeling and prints a quote to match their feelings.
-    if feelings == "1" or feelings == "Happy" or feelings == "happy":
-        print(happy_quote[random.randrange(len(happy_quote))])
-    elif feelings == "2" or feelings == "Exuberant" or feelings == "exuberant":
-        print(exuberant_quote[random.randrange(len(exuberant_quote))])
-    elif feelings == "3" or feelings == "Sad" or feelings == "sad":
-        print(sad_quote[random.randrange(len(sad_quote))])
-    elif feelings == "4" or feelings == "Depressed" or feelings == "depressed":
-        print(depressed_quote[random.randrange(len(depressed_quote))])
-    else:
-        print("Please enter a valid feeling that is listed above")
+    loop = 1
+    while loop == 1:
+        # Asks the user how they are feeling.
+        feelings = input("")
+        # Checks their feeling and prints a quote to match their feelings.
+        if feelings == "1" or feelings == "Happy" or feelings == "happy":
+            print(happy_quote[random.randrange(len(happy_quote))])
+            break
+        elif feelings == "2" or feelings == "Exuberant" or feelings == "exuberant":
+            print(exuberant_quote[random.randrange(len(exuberant_quote))])
+            break
+        elif feelings == "3" or feelings == "Sad" or feelings == "sad":
+            print(sad_quote[random.randrange(len(sad_quote))])
+            break
+        elif feelings == "4" or feelings == "Depressed" or feelings == "depressed":
+            print(depressed_quote[random.randrange(len(depressed_quote))])
+            break
+        else:
+            print("Please enter a valid feeling that is listed above")
 
 
 def main():
@@ -33,16 +39,16 @@ def main():
     # The main function that runs all the code.
     name = input("What is your name?\n")
     while check_quit == "1":
-        print("Hello " + name + " how are you feeling today?\n")
+        print("Hello " + name + " how are you feeling today?(You can type the word or number)\n")
         # Calls the function (list_feelings).
         list_feelings()
         # Calls the function (check_feelings).
         check_feelings()
         # Asks the user if they want to quit.
-        check_quit = input("\nWould you like to retry?\n1. To retry\n2. To quit\n")
-        if quit == "1":
+        check_quit = input("\nWould you like to retry? to retry type 1 or to quit press any key.\n")
+        if check_quit == "1":
             pass
-        elif quit == "2":
+        else:
             print("Thank you for telling me about your feelings :)")
             break
 
