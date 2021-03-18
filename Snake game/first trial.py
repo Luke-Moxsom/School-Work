@@ -1,8 +1,12 @@
 import arcade
+import random
 
 # Change these to change the x/y size of the screen
 SCREEN_SIZE_x = 600
 SCREEN_SIZE_y = 600
+
+# Score is how many apples the snake has eaten
+SCORE = 0
 
 # Square width/height
 SQUARE_WIDTH = 40
@@ -17,12 +21,12 @@ WINDOW_WIDTH = SCREEN_SIZE_x
 WINDOW_HEIGHT = SCREEN_SIZE_y
 
 # Movement speed
-MOVEMENT_SPEED = 20
+MOVEMENT_SPEED = 10
 
-# Green colours
+# Colours used in the game
 LIGHT_GREEN = (162, 210, 73)
 DARK_GREEN = (170, 216, 81)
-SNAKE_COLOR = (172, 118, 235)
+SNAKE_COLOR = (72, 118, 235)
 
 
 class Grid:
@@ -30,8 +34,9 @@ class Grid:
     CODE FOR THE GRID SETUP
     """
     def __init__(self, square_x, square_y, square_width, square_height, square_color):
-
-        # Converts the init functions into variables
+        """
+        TURNS THE __INIT__ FUNCTIONS INTO VARIABLES
+        """
         self.square_x = square_x
         self.square_y = square_y
         self.square_width = square_width
@@ -90,7 +95,7 @@ class Snake:
 
     def draw(self):
         """
-        SETS THE SNAKE CUBE UP TO BE DRAWN
+        SETS THE SNAKE UP TO BE DRAWN
         """
         arcade.draw_rectangle_filled(self.snake_pos_x, self.snake_pos_y, self.snake_width,
                                      self.snake_height, self.snake_color)
@@ -101,6 +106,43 @@ class Snake:
         """
         self.snake_pos_y += self.change_y
         self.snake_pos_x += self.change_x
+
+        # See if the ball hit the edge of the screen. If so, change direction
+        if self.snake_pos_x < self.snake_width - self.snake_width / 2:
+            self.snake_pos_x = self.snake_width - self.snake_width / 2
+
+        if self.snake_pos_x > WINDOW_WIDTH - self.snake_width / 2:
+            self.snake_pos_x = WINDOW_WIDTH - self.snake_width / 2
+
+        if self.snake_pos_y < self.snake_height - self.snake_height / 2:
+            self.snake_pos_y = self.snake_height - self.snake_height / 2
+
+        if self.snake_pos_y > WINDOW_HEIGHT - self.snake_height / 2:
+            self.snake_pos_y = WINDOW_HEIGHT - self.snake_height / 2
+
+
+class Apple:
+    """
+    CODE FOR THE APPLES
+    """
+    def __init__(self, apple_pos_x, apple_pos_y, apple_radius, apple_color):
+        """
+        TURNS THE __INIT__ FUNCTIONS INTO VARIABLES
+        """
+        self.apple_pos_x = apple_pos_x
+        self.apple_pos_y = apple_pos_y
+        self.apple_radius = apple_radius
+        self.apple_color = apple_color
+
+    def draw_apple(self):
+        """
+        SETS THE SNAKE UP TO BE DRAWN
+        """
+        arcade.draw_circle_filled(self.apple_pos_x, self.apple_pos_y, self.apple_radius, self.apple_color)
+
+        # Checks if the snake is on an apple and adds 1 to the score
+        if self.snake_pos_x and self.snake_pos_y == self.apple_pos_x and self.apple_pos_y:
+            SCORE += 1
 
 
 class MyGame(arcade.Window):
@@ -137,22 +179,22 @@ class MyGame(arcade.Window):
         CODE GETS CALLED EACH TIME THE USER PRESSES A KEY
         """
         if key == arcade.key.A:
-            self.change_x = -MOVEMENT_SPEED
+            self.snake.change_x = -MOVEMENT_SPEED
         elif key == arcade.key.D:
-            self.change_x = MOVEMENT_SPEED
+            self.snake.change_x = MOVEMENT_SPEED
         elif key == arcade.key.W:
-            self.change_y = MOVEMENT_SPEED
+            self.snake.change_y = MOVEMENT_SPEED
         elif key == arcade.key.S:
-            self.change_y = -MOVEMENT_SPEED
+            self.snake.change_y = -MOVEMENT_SPEED
 
     def on_key_release(self, key, modifiers):
         """
         CODE GETS CALLED EACH TIME THE USER RELEASES A KEY
         """
         if key == arcade.key.A or key == arcade.key.D:
-            self.change_x = 0
+            self.snake.change_x = 0
         elif key == arcade.key.W or key == arcade.key.S:
-            self.change_y = 0
+            self.snake.change_y = 0
 
 
 def main():
