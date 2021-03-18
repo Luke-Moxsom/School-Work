@@ -27,6 +27,7 @@ MOVEMENT_SPEED = 10
 LIGHT_GREEN = (162, 210, 73)
 DARK_GREEN = (170, 216, 81)
 SNAKE_COLOR = (72, 118, 235)
+APPLE_COLOR = (231, 71, 29)
 
 
 class Grid:
@@ -140,10 +141,6 @@ class Apple:
         """
         arcade.draw_circle_filled(self.apple_pos_x, self.apple_pos_y, self.apple_radius, self.apple_color)
 
-        # Checks if the snake is on an apple and adds 1 to the score
-        if self.snake_pos_x and self.snake_pos_y == self.apple_pos_x and self.apple_pos_y:
-            SCORE += 1
-
 
 class MyGame(arcade.Window):
     """
@@ -159,6 +156,7 @@ class MyGame(arcade.Window):
 
         self.grid = Grid(0, 0, SQUARE_WIDTH, SQUARE_HEIGHT, LIGHT_GREEN)
         self.snake = Snake(180, 180, 0, 0, SQUARE_WIDTH, SQUARE_HEIGHT, SNAKE_COLOR)
+        self.apple = Apple(380, 380, 20, APPLE_COLOR)
 
     def on_draw(self):
         """
@@ -167,6 +165,7 @@ class MyGame(arcade.Window):
         arcade.start_render()
         self.grid.draw()
         self.snake.draw()
+        self.apple.draw_apple()
 
     def update(self, delta_time):
         """
