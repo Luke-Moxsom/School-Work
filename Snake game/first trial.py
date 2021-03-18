@@ -172,6 +172,7 @@ class MyGame(arcade.Window):
         MOVES THE NEW SNAKE OBJECT TO THE AREA
         """
         self.snake.update()
+        self.snake.change_x = MOVEMENT_SPEED
 
     def on_key_press(self, key, modifiers):
         """
