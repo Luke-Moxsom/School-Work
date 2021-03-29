@@ -21,7 +21,7 @@ def title():
 -----------------------------------------------------------------------
 """ + RESET + """
           
-"""+BOLD+RED+"""                            Escape Game"""+RESET+"""
+"""+BOLD+RED+"""                            Escape your mum"""+RESET+"""
 
 """ + RED + """
 -----------------------------------------------------------------------
@@ -41,10 +41,12 @@ def rules():
     PRINTS THE RULES FOR THE PLAYERS TO READ
     """
     print("""
-Welcome traveler,
-You have stolen a camel to make your way across the great Mobi desert.
-The natives want their camel back and are chasing you down! 
-Survive your desert trek and outrun the natives.""")
+Welcome child,
+You have stolen your mum's credit card to buy some robux,
+your mum is not happy that and is chasing after you,
+escape with the credit card and you can have unlimited
+robux.
+""")
 
 
 def player():
@@ -65,7 +67,7 @@ def player():
         player_choice = input(RED + "1." + RESET + " Drink from your water bottle.\n" + RED + "2." + RESET +
                               " Travel ahead at full speed.\n" + RED + "3." + RESET + " Travel ahead at half speed.\n"
                               + RED + "4." + RESET + " Stop and rest.\n" + RED + "5." + RESET + " Status check.\n"
-                              + RED + "6." + RESET + " Given to the desert.\n"+BOLD+RED+"CHOOSE : "+RESET)
+                              + RED + "6." + RESET + " Admit defeat and return the card.\n"+BOLD+RED+"CHOOSE : "+RESET)
 
         blank_spaces()
 
@@ -99,8 +101,8 @@ def player():
             natives_distance_round_travelled = random.randrange(10, 20, 1)
             player_travelled += player_distance_round_travelled
             natives_travelled += natives_distance_round_travelled
-            print("You travelled"+RED, player_distance_round_travelled, RESET+" and the natives travelled"+RED,
-                  natives_distance_round_travelled, RESET)
+            print("You travelled"+RED, player_distance_round_travelled, RESET+" and the your mum travelled"+RED,
+                  natives_distance_round_travelled, RESET+"meters")
 
         elif player_choice == "3":
             """
@@ -112,8 +114,8 @@ def player():
             natives_distance_round_travelled = random.randrange(10, 20, 1)
             player_travelled += player_distance_round_travelled
             natives_travelled += natives_distance_round_travelled
-            print("You travelled"+RED, player_distance_round_travelled, RESET+" and the natives travelled"+RED,
-                  natives_distance_round_travelled, RESET)
+            print("You travelled"+RED, player_distance_round_travelled, RESET+" and the your mum travelled"+RED,
+                  natives_distance_round_travelled, RESET+"kilometers")
 
         elif player_choice == "4":
             """
@@ -129,12 +131,16 @@ def player():
             """
             STATS CHECK
             """
-            print("Kilometers travelled:"+RED, player_travelled, RESET)
+            print("Meters travelled:"+RED, player_travelled, RESET)
             print("Drinks left in water bottle:"+RED, water_bottle, RESET)
-            print("The natives are"+RED, player_travelled-natives_travelled, "kilometers"+RESET+" behind you")
+            print("Your mum is"+RED, player_travelled-natives_travelled, "meters"+RESET+" behind you")
 
         elif player_choice == "6":
-            print(RED+"You have given into the heat of the desert"+BOLD+", you have lost")
+            print(RED+"""
+You trip over on the rug, as you turn around you
+see your mum with the belt in her hand"""+BOLD+RED+"""
+you have lost
+            """)
             break
 
         else:
