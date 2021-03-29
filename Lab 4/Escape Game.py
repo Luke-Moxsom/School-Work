@@ -14,7 +14,7 @@ RESET = '\033[0m'
 
 def title():
     """
-    PRINTS THE TITLE OF THE GAME
+    PRINTS THE TITLE OF THE
     """
     print(RED + """
 -----------------------------------------------------------------------
